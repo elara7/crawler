@@ -1,0 +1,60 @@
+---
+title: "私募公司员工数量"
+output:
+  word_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+data1 <- read.csv("D:\\surface-Documents\\2016-2017(2)\\201701-201702\\凌云至善\\所有私募基金公司数据库.csv",stringsAsFactors = F)
+
+```
+
+#一、所有私募公司员工数量
+
+```{r, include=FALSE}
+d1 <- data.frame(na.omit(as.numeric(data1$员工数量)))
+```
+
+```{r, echo=FALSE}
+hist(d1[[1]],main = "所有私募公司员工数量分布",xlab = "人数", ylab = "频数")
+hist(d1[[1]][d1[[1]]<80],main = "所有私募公司员工数量分布（员工人数 80 以下）",xlab = "人数", ylab = "频数")
+```
+
+25% 分位数：`r quantile(d1[[1]],0.25)`
+
+50% 分位数：`r quantile(d1[[1]],0.5)`
+
+75% 分位数：`r quantile(d1[[1]],0.75)`
+
+最大值：`r max(d1[[1]])`
+
+均值：`r mean(d1[[1]])`
+
+共 `r length(d1[[1]])` 家。
+
+#二、证券投资基金私募公司员工数量
+```{r, include=FALSE}
+d2 <- data.frame(na.omit(as.numeric(data1$员工数量[data1$基金类型=="证券投资基金"])))
+```
+
+```{r, echo=FALSE}
+hist(d2[[1]],main = "证券投资基金员工数量分布",xlab = "人数", ylab = "频数")
+hist(d2[[1]][d2[[1]]<80],main = "证券投资基金员工数量分布（员工人数 80 以下）",xlab = "人数", ylab = "频数")
+```
+
+25% 分位数：`r quantile(d2[[1]],0.25)`
+
+50% 分位数：`r quantile(d2[[1]],0.5)`
+
+75% 分位数：`r quantile(d2[[1]],0.75)`
+
+最大值：`r max(d2[[1]])`
+
+均值：`r mean(d2[[1]])`
+
+共 `r length(d2[[1]])` 家。
